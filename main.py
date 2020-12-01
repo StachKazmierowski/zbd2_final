@@ -71,7 +71,7 @@ def gen_data(COLUMNS_COUNT, DAYS_NUMBER):
     data(ROWS_NUMBER, COLUMNS_COUNT, DAYS_NUMBER).to_csv('data/data-' + CNAME + '_columns-' + DNAME + '_days' + '.csv', index=False, header=False)
     sql_script(COLUMNS_COUNT, CNAME, DNAME)
 
-columns_counts = [1,4,16,64,256, 512, 1024]
+columns_counts = [1,4,16,64,256, 512, 1024, 2048]
 days_counts = [30, 90, 182, 365, 730, 1460, 2920]
 
 #%%

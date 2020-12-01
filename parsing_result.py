@@ -6,7 +6,7 @@ from main import CLASSES_COUNT
 np.set_printoptions(suppress=True)
 
 DAYS_COUNTS_NUMBER = len(days_counts)
-columns_counts = [1,4,16,64,256, 512, 1024]
+columns_counts = [1,4,16,64,256, 512, 1024, 2048]
 
 def parse_results(COLUMNS_COUNT, DAYS_NUMBER):
     CNAME = str(COLUMNS_COUNT)
