@@ -27,31 +27,61 @@ def parse_results(COLUMNS_COUNT, DAYS_NUMBER):
 
 
 
-print(len(parse_results(columns_counts[0], days_counts[0])))
+print((parse_results(columns_counts[6], days_counts[6])[5]))
 
 #%%
 results_name = []
 results = []
 for ccount in columns_counts:
+    # print(ccount)
     for dcount in days_counts:
         results.append(parse_results(ccount, dcount))
-    res = np.array(results)
-res = np.array(results)
-print(res)
-res = np.around(res, decimals=3)
+        # print(dcount)
+print(results[0][5])
+print(results[48][5])
 #%%
-res_csv = np.zeros((49, 14))
-res_local = np.zeros((49, 14))
-res_cstore = np.zeros((49, 14))
-# res_csv_long = np.zeros((49, 14))
-# res_local_long = np.zeros((49, 14))
-# res_cstore_long = np.zeros((49, 14))
-for i in range(7):
-    res_csv[:,2 * i] = res[:,6*i]
-    res_csv[:,2 * i +1] = res[:,6*i + 1]
-    res_local[:,2 * i] = res[:,6*i + 2]
-    res_local[:,2 * i+1] = res[:,6*i + 3]
-    res_cstore[:,2 * i] = res[:,6*i + 4]
-    res_cstore[:,2 * i+1] = res[:,6*i + 5]
-print((res_csv/res_cstore).max())
+    # res = np.array(results)
+res = np.array(results)
+print(res[0][41])
+print(res[48][41])
+# print(res)
+# res = np.around(res, decimals=3)
+# print(res.shape)
+print(res[:,0:])
+#%%
+res_names = ["res_csv", "res_csv_long","res_local","res_local_long","res_cstore","res_cstore_long"]
+heads = []
+rowes = []
+for dcount in days_counts:
+    heads.append(str(dcount))
+for ccount in columns_counts:
+    for dcount in days_counts:
+        rowes.append(str(ccount) + "-columns_" + str(dcount) + "-days")
+res_csv = res[:,0:7]
+res_csv_long = res[:,7:14]
+res_local  = res[:,14:21]
+res_local_long = res[:,21:28]
+res_cstore = res[:,28:35]
+res_cstore_long = res[:,35:42]
+print(res)
+res_np = [res_csv,res_csv_long,res_local,res_local_long,res_cstore,res_cstore_long]
+# for i in range(7):
+#     res_csv[:, i] = res[:,6*i]
+#     res_csv_long[:,i] = res[:,6*i + 1]
+#     res_local[:, i] = res[:,6*i + 2]
+#     res_local_long[:, i] = res[:,6*i + 3]
+#     res_cstore[:, i] = res[:,6*i + 4]
+#     res_cstore_long[:, i] = res[:,6*i + 5]
+#     print(res[:,6*i + 5])
+#%%
+print(res_cstore_long)
+
+#%%
+print((res_csv))
+for i in range(6):
+    df = pd.DataFrame(res_np[i], columns=heads, index=rowes)
+    print(res_names[i])
+    print(df)
+    df.to_csv("./results/" + res_names[i])
+
 
